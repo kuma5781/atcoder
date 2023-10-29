@@ -5,16 +5,17 @@ for i in range(N):
     T[i], A[i] = input().split()
     A[i] = int(A[i])
 
-M = 0
+ans = 0
+R = 10000
 for i in range(N):
     if T[i] == "+":
-        M += A[i]
+        ans += A[i]
     elif T[i] == "-":
-        M -= A[i]
+        ans -= A[i]
     else:
-        M *= A[i]
+        ans *= A[i]
 
-    if M < 0:
-        M += 10000
-    M %= 10000
-    print(M)
+    if ans < 0:
+        ans += R
+    ans %= R
+    print(ans)
