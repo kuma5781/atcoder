@@ -8,20 +8,21 @@ sys.setrecursionlimit(120000)
 def dfs(pos, G, visited):
     visited[pos] = True
     for i in G[pos]:
-        if visited[i - 1] == False:
-            dfs(i - 1, G, visited)
+        if visited[i] == False:
+            dfs(i, G, visited)
 
 
 N, M = map(int, input().split())
 edges = [list(map(int, input().split())) for _ in range(M)]
 
-G = [list() for _ in range(N)]
+G = [list() for _ in range(N + 1)]
 for a, b in edges:
-    G[a - 1].append(b)
-    G[b - 1].append(a)
+    G[a].append(b)
+    G[b].append(a)
 
-visited = [False] * N
-dfs(0, G, visited)
+visited = [False] * (N + 1)
+visited[0] = True
+dfs(1, G, visited)
 
 ans = True
 for i in range(N):
